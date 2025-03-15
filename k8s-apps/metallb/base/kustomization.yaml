@@ -1,6 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: argocd
+namespace: metallb-system
+
 resources:
-- https://raw.githubusercontent.com/argoproj/argo-cd/v2.14.0/manifests/install.yaml
+  - github.com/metallb/metallb/config/native?ref=v0.14.9
+  - ip-pool.yaml
+  - l2adv.yaml
