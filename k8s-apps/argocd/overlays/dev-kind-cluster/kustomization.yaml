@@ -6,6 +6,7 @@ namespace: argocd
 resources:
   - ../../base
   - namespace.yaml
+  - application.yaml
 
 patches:
  - path: resource-limits-patch.yaml

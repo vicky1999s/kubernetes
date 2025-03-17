@@ -15,8 +15,6 @@ spec:
   destination:
     server: {{ .destination | default "https://kubernetes.default.svc" }}
     namespace: {{ .namespace }}
-  info:
-    - name: {{ $.Release.Name }}
   {{- if $.Values.global.syncPolicy }}
   syncPolicy: {{ toYaml $.Values.global.syncPolicy | nindent 4 }}
   {{- end }}

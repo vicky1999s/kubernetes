@@ -22,7 +22,7 @@ applications:
     namespace: monitoring
     project: default
     source:
-      repoUrl: https://github.com/vicky1999s/kubernetes.git
+      repoURL: https://github.com/vicky1999s/kubernetes.git
       targetRevision: main
       path: overlay/dev-kind-cluster
     destination: https://kubernetes.default.svc
