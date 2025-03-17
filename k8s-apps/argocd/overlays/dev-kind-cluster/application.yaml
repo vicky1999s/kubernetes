@@ -11,7 +11,7 @@ metadata:
 spec:
   project: default
   source:
-    path: argo-helm-apps
+    path: k8s-apps/argo-helm-apps
     repoURL: https://github.com/vicky1999s/kubernetes.git
     targetRevision: main
   destination:

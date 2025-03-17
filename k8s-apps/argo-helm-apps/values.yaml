@@ -24,7 +24,7 @@ applications:
     source:
       repoURL: https://github.com/vicky1999s/kubernetes.git
       targetRevision: main
-      path: overlay/dev-kind-cluster
+      path: k8s-apps/monitoring/overlay/dev-kind-cluster
     destination: https://kubernetes.default.svc
     finalizers:
       - resources-finalizer.argocd.argoproj.io
