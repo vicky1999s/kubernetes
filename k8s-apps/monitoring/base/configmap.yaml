@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: prometheus-config
   namespace: monitoring
+  annotations:
+     argocd.argoproj.io/sync-wave: "3"
 data:
   prometheus.yml: |
     global:
