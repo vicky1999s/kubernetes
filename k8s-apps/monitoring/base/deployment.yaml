@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+  labels:
+    app: prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+  template:
+    metadata:
+      labels:
+        app: prometheus
+    spec:
+      containers:
+      - name: prometheus
+        image: docker.io/prom/prometheus:v3.2.0
+        args:
+        - "--config.file=/etc/prometheus/prometheus.yml"
+        - "--storage.tsdb.path=/prometheus/"
+        - "--storage.tsdb.retention.time=6h"
+        ports:
+        - containerPort: 9090
+          name: monitoring
+          protocol: TCP
+        resources:
+          requests:
+            memory: 100Mi
+            cpu: 50m
+          limits:
+            memory: 200Mi
+            cpu: 100m
+        livenessProbe:
+          httpGet:
+            path: /metrics
+            port: monitoring
+          failureThreshold: 1
+          periodSeconds: 20
+        startupProbe:
+          httpGet:
+            path: /metrics
+            port: monitoring
+          failureThreshold: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /metrics
+            port: monitoring
+          failureThreshold: 1
+          periodSeconds: 20
+        volumeMounts:
+        - name: prometheus-config
+          mountPath: /etc/prometheus/
+        - name: prometheus-data
+          mountPath: /prometheus/
+      volumes:
+      - name: prometheus-config
+        configMap:
+          name: prometheus-config
+          defaultMode: 420
+      - name: prometheus-data
+        emptyDir: {}
+
+
+

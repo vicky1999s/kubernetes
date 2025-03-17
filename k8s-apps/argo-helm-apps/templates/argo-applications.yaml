@@ -1,0 +1,30 @@
+{{ range .Values.applications }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .name }}
+  namespace: {{ $.Values.global.namespace }}
+  {{- if .finalizers }}
+  finalizers: {{ toYaml .finalizers | nindent 4 }}
+  {{- end }}
+  labels:
+    name: guestbook
+spec:
+  project: default
+  source: {{ toYaml .source | nindent 4 }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ .namespace }}
+  info:
+    - name: {{ $.Release.Name }}
+  {{- if $.Values.global.syncPolicy }}
+  syncPolicy: {{ toYaml $.Values.global.syncPolicy | nindent 4 }}
+  {{- end }}
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  revisionHistoryLimit: 5
+ {{ end }}
