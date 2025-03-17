@@ -1,0 +1,29 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: monitoring
+  annotations:
+     argocd.argoproj.io/sync-wave: "2"
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  - pods
+  - endpoints
+  - service
+  verbs:
+  - get
+  - list
+  - watch
+- nonResourceURLs:
+  - /healthz
+  - /healthz/*
+  - /livez
+  - /livez/*
+  - /metrics
+  - /metrics/slis
+  - /readyz
+  - /readyz/*
+  verbs:
+  - get

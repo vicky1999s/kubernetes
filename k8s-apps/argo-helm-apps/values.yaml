@@ -1,0 +1,30 @@
+# Default values for argo-applications.
+# This is a YAML-formatted file.
+
+global:
+  namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+    - Validate=true
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
+    - RespectIgnoreDifferences=true
+    - ApplyOutOfSyncOnly=true
+
+applications:
+  monitoring:
+    name: monitoring
+    namespace: monitoring
+    project: default
+    source:
+      repoURL: https://github.com/vicky1999s/kubernetes.git
+      targetRevision: main
+      path: k8s-apps/monitoring/overlay/dev-kind-cluster
+    destination: https://kubernetes.default.svc
+    finalizers:
+      - resources-finalizer.argocd.argoproj.io
