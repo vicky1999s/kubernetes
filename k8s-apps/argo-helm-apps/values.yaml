@@ -1,5 +1,6 @@
 # Default values for argo-applications.
 # This is a YAML-formatted file.
+
 global:
   namespace: argocd
   syncPolicy:
@@ -19,9 +20,11 @@ applications:
   monitoring:
     name: monitoring
     namespace: monitoring
+    project: default
     source:
       repoUrl: https://github.com/vicky1999s/kubernetes.git
       targetRevision: main
       path: overlay/dev-kind-cluster
+    destination: https://kubernetes.default.svc
     finalizers:
       - resources-finalizer.argocd.argoproj.io

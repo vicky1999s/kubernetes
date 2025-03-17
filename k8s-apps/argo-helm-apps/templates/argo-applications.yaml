@@ -8,12 +8,12 @@ metadata:
   finalizers: {{ toYaml .finalizers | nindent 4 }}
   {{- end }}
   labels:
-    name: guestbook
+    name: {{ .name }}
 spec:
-  project: default
+  project: {{ .project | default "default" }}
   source: {{ toYaml .source | nindent 4 }}
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .destination | default "https://kubernetes.default.svc" }}
     namespace: {{ .namespace }}
   info:
     - name: {{ $.Release.Name }}
