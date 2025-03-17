@@ -8,6 +8,7 @@ subjects:
 - kind: ServiceAccount
   name: k8s-monitoring
   apiGroup: ""
+  namespace: monitoring
 roleRef:
   kind: ClusterRole
   name: monitoring
