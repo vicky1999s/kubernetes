@@ -23,6 +23,7 @@ spec:
         - "--config.file=/etc/prometheus/prometheus.yml"
         - "--storage.tsdb.path=/prometheus/"
         - "--storage.tsdb.retention.time=6h"
+        - "--log.level=debug"
         ports:
         - containerPort: 9090
           name: prometheus
