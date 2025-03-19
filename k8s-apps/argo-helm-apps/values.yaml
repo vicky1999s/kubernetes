@@ -28,3 +28,14 @@ applications:
     destination: https://kubernetes.default.svc
     finalizers:
       - resources-finalizer.argocd.argoproj.io
+  kube-state-metrics:
+    name: kube-state-metrics
+    namespace: monitoring
+    project: default
+    source:
+      repoURL: https://github.com/vicky1999s/kubernetes.git
+      targetRevision: main
+      path: k8s-apps/kube-state-metrics/overlay/dev-kind-cluster
+    destination: https://kubernetes.default.svc
+    finalizers:
+      - resources-finalizer.argocd.argoproj.io
