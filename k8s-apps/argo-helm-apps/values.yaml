@@ -39,3 +39,14 @@ applications:
     destination: https://kubernetes.default.svc
     finalizers:
       - resources-finalizer.argocd.argoproj.io
+  testing:
+    name: testing
+    namespace: default
+    project: default
+    source:
+      repoURL: https://github.com/vicky1999s/kubernetes.git
+      targetRevision: main
+      path: k8s-apps/testing/overlay/dev-kind-cluster
+    destination: https://kubernetes.default.svc
+    finalizers:
+      - resources-finalizer.argocd.argoproj.io
