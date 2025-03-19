@@ -19,7 +19,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres-prima
+  name: postgres-primary
   namespace: default
   annotations:
     prometheus.io/port: '9187'

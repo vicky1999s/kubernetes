@@ -6,12 +6,6 @@ metadata:
 subsets:
   - addresses:
       - ip: 10.244.2.7
-    ports:
-      - name: postgres
-        port: 5432
-      - name: metrics
-        port: 9187
-  - addresses:
       - ip: 10.244.2.8
     ports:
       - name: postgres
@@ -26,7 +20,7 @@ metadata:
   namespace: default
 subsets:
   - addresses:
-      - ip: 10.244.1.16
+      - ip: postgres-0.postgres-primary.default.svc.cluster.local
     ports:
       - name: postgres
         port: 5432
