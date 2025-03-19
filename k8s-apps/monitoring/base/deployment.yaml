@@ -37,13 +37,13 @@ spec:
         livenessProbe:
           httpGet:
             path: /metrics
-            port: monitoring
+            port: 9090
           failureThreshold: 1
           periodSeconds: 20
         startupProbe:
           httpGet:
             path: /metrics
-            port: monitoring
+            port: 9090
           failureThreshold: 30
           periodSeconds: 10
         readinessProbe:
