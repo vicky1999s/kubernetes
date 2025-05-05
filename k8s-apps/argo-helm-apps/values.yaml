@@ -45,7 +45,7 @@ applications:
     project: default
     source:
       repoURL: https://github.com/vicky1999s/kubernetes.git
-      targetRevision: main
+      targetRevision: app-testing
       path: k8s-apps/testing/overlay/dev-kind-cluster
     destination: https://kubernetes.default.svc
     finalizers:
